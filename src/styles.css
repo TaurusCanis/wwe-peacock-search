@@ -1,37 +1,130 @@
-form {
-    display: flex;
-    flex-direction: column;
-    max-width: 650px;
-    margin: auto;
-    margin-bottom: 5px;
-} 
-
-form > * {
-    margin-top: 5px;
+* {
+    box-sizing: border-box;
 }
 
-form > label > span {
-    margin: 0 5px;
-    padding: 5px;
-    border: 1px solid black;	
-    border-radius: 5px;
+html {
+    background-color: #000;
+    color: #e7e7e7;
+    font-family:Roboto;
+    font-style:normal;
+    font-weight:400;
 }
 
-.hide {
+button {
+    border:0;
+    border-radius:4px;
+    padding:10px 20px;
+    cursor:pointer;
+    font-size:14px;
+    line-height:16px;
+    text-align:center;
+    color:#000;
+    font-weight: 700;
+}
+
+@media(min-width:1025px){
+    button{
+        border-radius:6px;
+        font-size:20px;
+        line-height:24px
+    }
+}
+button[disabled]{
+    opacity:.5
+}
+button[disabled]:hover{
+    box-shadow:none;
+    cursor:default
+}
+button.primary{
+    background-color:#fccc12
+}
+
+button.secondary {
+    box-shadow: 0 0 0 1.5px #e7e7e7;
+    box-sizing: border-box;
+    color: #e7e7e7;
+    background-color: #000;
+}
+
+.modal {
     display: none;
 }
 
-.show {
-    display: block;
-}
-
 #searchParametersBtnContainer {
-    display: flex;
-    justify-content: space-between;
+    display: none;
 }
 
-.toggleSearchParametersBtn {
-    display: inline-block;
-    width: 5rem;
-    text-align: center;
+.closeInputDisplay {
+    display: none;
 }
+
+form #searchFormsContainer > * {
+    margin-top: 5px;
+    width: 100%;
+}
+
+
+@media screen and (min-width: 665px) {
+    form {
+        display: flex;
+        flex-direction: column;
+        max-width: 650px;
+        margin: auto;
+        margin-bottom: 5px;
+    } 
+    
+    form > label > span {
+        margin: 0 5px;
+        padding: 5px;
+        border: 1px solid black;	
+        border-radius: 5px;
+    }
+    
+    .hide {
+        display: none;
+    }
+    
+    .show {
+        display: block;
+    }
+    
+    #searchParametersBtnContainer {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .toggleSearchParametersBtn {
+        display: flex;
+        /* width: 5rem; */
+        text-align: center;
+        justify-content: space-between;
+        align-items: center;
+        height: 3rem;
+        width: 8rem;
+    }
+
+    .closeInputDisplay {
+        display: inline-block;
+    }
+
+    .toggleInputDisplay {
+        padding: .1rem;
+        justify-self: center;
+        font-size: 1.5rem;
+    }
+
+    button.inputIsDisplayed {
+        background-color: #e7e7e7;
+        color: black;      
+    }
+
+    .inputIsDisplayed .toggleInputDisplay {
+        transform: rotate(45deg);
+    }
+
+    .inputIsDisplayed, .inputIsHidden, .toggleInputDisplay {
+        transition: all .3s ease-in-out;
+    }
+}
+

@@ -1,8 +1,11 @@
 import { processName } from "./helpers";
+import AddButton from "./AddButton";
+import { useRef } from "react";
 
 export default function SearchFormInputContainer(props) {
-    const name = props.name.includes("-") ? processName(props.name) : props.name;
-	
+	const displayName = processName(props.name);
+	const inputRef = useRef();
+
     return (
 	<div className={props.searchParametersDisplay ? "show" : "hide"}>
 	    <input 
@@ -11,19 +14,21 @@ export default function SearchFormInputContainer(props) {
 				field: e.target.name,
 				value: e.target.value,
 			})}
-			// onKeyDown={props.addValue} 
-			onKeyDown={(e) => props.dispatch({ type: 'addSearchParameter', e: e })}
+			onKeyDown={(e) => {
+				if (e.key === 'Enter') props.dispatch({ type: 'addSearchParameter', e: e });
+			}}
 			type="text" 
 			value={props.value} 
-			id={name} 
-			name={name} 
-			placeholder={name} 
+			id={props.name} 
+			name={props.name} 
+			placeholder={displayName} 
+			ref={inputRef}
 		/>
-		<span 
-			onClick={() => props.dispatch({ type: 'updateInputsDisplay', field: name, value: false })}
-		>
-			X
-		</span>
+		<AddButton 
+			dispatch={props.dispatch} 
+			value={props.value}
+			inputRef={inputRef.current}
+		/>
 	</div>
     );
 }
